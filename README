@@ -1,0 +1,21 @@
+fixed ape for LaTeX2e and also for use with noweb.
+
+Well, this may do less than ape, but it works w/ LaTeX2e and is not based on
+TeX, but LaTeX.
+
+This means you could use anything understanding LaTeX + moreverb (the only
+LaTeX package used) to do what you'd like to w/ the LaTeX source..
+
+just for fun!
+
+TO INSTALL: in a machine w/ LaTeX2e, moreverb and flex installed, unpack the
+tar file and `make'.
+
+TO USE: [from the Makefile]
+
+	ada2latex <xample.adb >xample.ape               #get ape file from ada src
+	latex xample.tex                                #this includes the ape
+                                                    #file & uses adalst pkg.
+
+
+--  nemo@ordago.uc3m.es

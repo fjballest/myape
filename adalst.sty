@@ -1,0 +1,161 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -*- Mode: Latex -*- %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% adalisting.sty --- listings for Ada
+%% Author          : Francisco J. Ballesteros
+%% Created On      : Fri Jun  3 22:50:16 1994
+%% Last Modified By: Francisco J. Ballesteros
+%% Last Modified On: Thu Oct 26 17:32:01 1995
+%% Update Count    : 7
+%% RCS Id          : $Id$
+%% Usage           : see below :)
+%% Required        : see below :)
+%% Status          : ($State$) Unknown, Use with caution!
+%% Prefix(es)      : 
+%% Requeriments    : needs \moreverb to be used before
+%% Purpose         : 
+%%                 : typeset Ada w/ LaTeX
+%%                 : REMEMBER!!! if you modify it, just keep it simple!
+%% ----------------______________________________________________
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%% Ensure we do have the needed environments
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%% We need at least LaTeX2e
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{adalst}
+                [1995/07/03 v0.1b
+     The Ada listing package]
+
+
+% exit if loaded, like #ifndef _FOO #define _FOO #endif in headers ;)
+\ifx \adastyloaded\relax \endinput\else\let\adastyloaded\relax\fi
+
+\usepackage{moreverb}
+
+%% ----------------------------------------------------------------------- 
+%%		      New Commands for typeset keywords
+%% ----------------------------------------------------------------------- 
+
+\newcommand{\AdaKeyword}[1]{\textrm{\textbf{#1}}}
+\newcommand{\AdaAbort}{\AdaKeyword{abort}}
+\newcommand{\AdaAbs}{\AdaKeyword{abs}}
+\newcommand{\AdaAccept}{\AdaKeyword{accept}}
+\newcommand{\AdaAccess}{\AdaKeyword{access}}
+\newcommand{\AdaAll}{\AdaKeyword{all}}
+\newcommand{\AdaAnd}{\AdaKeyword{and}}
+\newcommand{\AdaArray}{\AdaKeyword{array}}
+\newcommand{\AdaAt}{\AdaKeyword{at}}
+\newcommand{\AdaBegin}{\AdaKeyword{begin}}
+\newcommand{\AdaBody}{\AdaKeyword{body}}
+\newcommand{\AdaCase}{\AdaKeyword{case}}
+\newcommand{\AdaConstant}{\AdaKeyword{constant}}
+\newcommand{\AdaDeclare}{\AdaKeyword{declare}}
+\newcommand{\AdaDelay}{\AdaKeyword{delay}}
+\newcommand{\AdaDelta}{\AdaKeyword{delta}}
+\newcommand{\AdaDigits}{\AdaKeyword{digits}}
+\newcommand{\AdaDo}{\AdaKeyword{do}}
+\newcommand{\AdaElse}{\AdaKeyword{else}}
+\newcommand{\AdaElsif}{\AdaKeyword{elsif}}
+\newcommand{\AdaEnd}{\AdaKeyword{end}}
+\newcommand{\AdaEntry}{\AdaKeyword{entry}}
+\newcommand{\AdaException}{\AdaKeyword{exception}}
+\newcommand{\AdaExit}{\AdaKeyword{exit}}
+\newcommand{\AdaFor}{\AdaKeyword{for}}
+\newcommand{\AdaFunction}{\AdaKeyword{function}}
+\newcommand{\AdaGeneric}{\AdaKeyword{generic}}
+\newcommand{\AdaGoto}{\AdaKeyword{goto}}
+\newcommand{\AdaIf}{\AdaKeyword{if}}
+\newcommand{\AdaIn}{\AdaKeyword{in}}
+\newcommand{\AdaIs}{\AdaKeyword{is}}
+\newcommand{\AdaLimited}{\AdaKeyword{limited}}
+\newcommand{\AdaLoop}{\AdaKeyword{loop}}
+\newcommand{\AdaMod}{\AdaKeyword{mod}}
+\newcommand{\AdaNew}{\AdaKeyword{new}}
+\newcommand{\AdaNot}{\AdaKeyword{not}}
+\newcommand{\AdaNull}{\AdaKeyword{null}}
+\newcommand{\AdaOf}{\AdaKeyword{of}}
+\newcommand{\AdaOr}{\AdaKeyword{or}}
+\newcommand{\AdaOthers}{\AdaKeyword{others}}
+\newcommand{\AdaOut}{\AdaKeyword{out}}
+\newcommand{\AdaPackage}{\AdaKeyword{package}}
+\newcommand{\AdaPragma}{\AdaKeyword{pragma}}
+\newcommand{\AdaPrivate}{\AdaKeyword{private}}
+\newcommand{\AdaProcedure}{\AdaKeyword{procedure}}
+\newcommand{\AdaRaise}{\AdaKeyword{raise}}
+\newcommand{\AdaRange}{\AdaKeyword{range}}
+\newcommand{\AdaRecord}{\AdaKeyword{record}}
+\newcommand{\AdaRem}{\AdaKeyword{rem}}
+\newcommand{\AdaRenames}{\AdaKeyword{renames}}
+\newcommand{\AdaReturn}{\AdaKeyword{return}}
+\newcommand{\AdaReverse}{\AdaKeyword{reverse}}
+\newcommand{\AdaSelect}{\AdaKeyword{select}}
+\newcommand{\AdaSeparate}{\AdaKeyword{separate}}
+\newcommand{\AdaSubtype}{\AdaKeyword{subtype}}
+\newcommand{\AdaTask}{\AdaKeyword{task}}
+\newcommand{\AdaTerminate}{\AdaKeyword{terminate}}
+\newcommand{\AdaThen}{\AdaKeyword{then}}
+\newcommand{\AdaType}{\AdaKeyword{type}}
+\newcommand{\AdaUse}{\AdaKeyword{use}}
+\newcommand{\AdaWhen}{\AdaKeyword{when}}
+\newcommand{\AdaWhile}{\AdaKeyword{while}}
+\newcommand{\AdaWith}{\AdaKeyword{with}}
+\newcommand{\AdaXor}{\AdaKeyword{xor}}
+\newcommand{\AdaDotdot}{\AdaKeyword{..\@}}
+\newcommand{\AdaComment}[1]{\emph{#1}}
+
+%% ----------------------------------------------------------------------- 
+%%			       entry points
+%% ----------------------------------------------------------------------- 
+
+% just put it pretty printed
+% 
+\newcommand{\listada}[1]{
+\selectlanguage{english}
+\begin{verbatimcmd}
+\small
+\input{#1}
+\end{verbatimcmd}
+\selectlanguage{spanish}
+}
+
+% same as \listada but with rules delimiting the listing
+%
+\newcommand{\rlistada}[1]{
+\selectlanguage{english}
+\begin{verbatimcmd}
+\hrule
+\vspace{0.25cm}
+\small
+\input{#1}
+\hrule
+\end{verbatimcmd}
+\selectlanguage{spanish}
+}
+
+% just put it pretty printed
+% 
+\newcommand{\adalst}[1]{
+\selectlanguage{english}
+\begin{verbatimcmd}
+\small
+\input{#1}
+\end{verbatimcmd}
+}
+
+% same as \listada but with rules delimiting the listing
+%
+\newcommand{\adarlst}[1]{
+\selectlanguage{english}
+\begin{verbatimcmd}
+\hrule
+\vspace{0.25cm}
+\small
+\input{#1}
+\hrule
+\end{verbatimcmd}
+}
+
+% environment for  listings, not just ada, but every kind of listings
+%
+%\newenvironment
